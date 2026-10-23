@@ -16,7 +16,7 @@ for (const theme of t.color.themes) {
 out.push('/* Product option: warnings in yellow, for products without yellow actions (DMWorks Net). */\n[data-warning="yellow"] { --warning: var(--create); }');
 
 const scale = [];
-for (const group of ['spacing', 'radius', 'size', 'stroke']) for (const s of t[group].tokens) scale.push(`  --${s.name}: ${s.value};`);
+for (const group of ['spacing', 'radius', 'size', 'stroke', 'motion']) for (const s of t[group]?.tokens ?? []) scale.push(`  --${s.name}: ${s.value};`);
 scale.push(`  --font-sans: ${t.type.families.sans};`, `  --font-mono: ${t.type.families.mono};`);
 for (const g of t.type.groups) for (const s of g.styles)
   scale.push(`  --text-${s.name}: ${s.fontWeight} ${s.fontSize}/${s.lineHeight} var(--font-${g.family});`);

@@ -82,6 +82,7 @@
   --space-16: 16px;
   --space-24: 24px;
   --space-32: 32px;
+  --space-48: 48px;
   --radius-box: 2px;
   --radius-thumb: 8px;
   --radius-icon: 12px;
@@ -101,6 +102,13 @@
   --stroke-box: 1.5px;
   --stroke-icon: 1.8px;
   --stroke-icon-selected: 2.6px;
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --duration-long: 500ms;
+  --ease-enter: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-move: cubic-bezier(0.3, 0, 0.2, 1);
   --font-sans: "Instrument Sans", -apple-system, "Helvetica Neue", system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
   --text-display: 700 66px/56px var(--font-sans);

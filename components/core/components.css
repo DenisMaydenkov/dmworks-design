@@ -22,7 +22,9 @@
 .dm-btn--line.is-pressed, .dm-btn--accent.is-pressed, .dm-btn--create.is-pressed { background: var(--fill); filter: none; }
 .dm-btn[disabled] { opacity: 0.4; cursor: default; }
 .dm-btn.is-loading { pointer-events: none; }
-.dm-spin { width: 1.15em; height: 1.15em; border-radius: 50%; border: 2.4px solid currentColor; border-right-color: transparent; opacity: 0.9; box-sizing: border-box; }
+/* Spinner sits in the pill's rounded end, concentric with it. */
+.dm-btn.is-loading:has(> .dm-spin:first-child) { padding-left: calc((var(--h) - var(--ic)) / 2); }
+.dm-spin { width: var(--ic, 1.15em); height: var(--ic, 1.15em); flex: none; border-radius: 50%; border: 2.4px solid currentColor; border-right-color: transparent; opacity: 0.9; box-sizing: border-box; }
 
 .dm-icon-btn { --s: var(--button-m); --ic: 18px; flex: none; width: var(--s); height: var(--s); padding: 0; border-radius: 50%; border: 1px solid var(--line); background: none; color: var(--ink);
   display: grid; place-items: center; cursor: pointer; box-sizing: border-box; }
@@ -59,6 +61,10 @@
 .dm-chip { display: inline-flex; align-items: center; gap: 8px; height: var(--button-xs); padding: 0 16px 0 12px; border-radius: var(--radius-pill); border: 1px solid var(--line); background: none; color: var(--ink); font: 500 14px/1 var(--font-sans); white-space: nowrap; box-sizing: border-box; }
 .dm-chip--filter { padding: 0 12px; cursor: pointer; }
 .dm-chip--filter.is-selected { background: var(--ink); border-color: var(--ink); color: var(--on-primary); }
+.dm-chip--attention { border-color: var(--create); color: var(--create); }
+.dm-chip--attention .dm-chip__dot { background: var(--create); }
+.dm-chip--ink { background: var(--ink); border-color: var(--ink); color: var(--on-primary); }
+.dm-chip--ink .dm-chip__dot { background: var(--on-primary); }
 .dm-chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
 
 .dm-stepper { display: inline-flex; align-items: center; height: var(--button-m); padding: 0 4px; border-radius: var(--radius-pill); border: 1px solid var(--line); box-sizing: border-box; }
@@ -74,6 +80,10 @@
 .dm-input input, .dm-input span { flex: 1 1 auto; min-width: 0; border: 0; background: none; color: inherit; font: inherit; outline: none; }
 .dm-input .is-placeholder { color: var(--muted); }
 .dm-input .dm-icon { font-size: 18px; color: var(--muted); }
+/* Two lines (label + value) in a pill: text starts where the rounded end ends. */
+.dm-input--stacked { padding: 0 24px 0 28px; }
+.dm-input--stacked .dm-input__stack { display: flex; flex-direction: column; gap: 2px; }
+.dm-input--stacked .dm-field__label { font-size: 11px; line-height: 14px; color: var(--muted); }
 .dm-input--m { height: var(--button-m); padding: 0 20px 0 16px; }
 .dm-input.is-focus { border: 1.5px solid var(--ink); }
 .dm-input.is-error { border-color: var(--danger); }
@@ -92,7 +102,7 @@
 .dm-dock { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); height: var(--dock); padding: 0 var(--space-24); background: var(--bg); }
 .dm-dock a { display: grid; place-items: center; color: var(--muted); font-size: 24px; }
 .dm-dock a.is-selected { color: var(--ink); }
-.dm-dock--float { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; height: var(--dock-float); padding: 8px; border-radius: var(--radius-pill); border: 1px solid var(--line); background: var(--bg-raised); box-sizing: border-box; }
+.dm-dock--float { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; height: var(--dock-float); padding: 8px; border-radius: var(--radius-pill); box-shadow: inset 0 0 0 1px var(--line); background: var(--bg-raised); box-sizing: border-box; }
 .dm-dock--float a { height: 48px; border-radius: var(--radius-pill); font-size: 24px; text-decoration: none; }
 .dm-dock--float a.is-selected { background: var(--ink); color: var(--on-primary); }
 
@@ -184,7 +194,9 @@
 .dm-steps > span { display: flex; flex-direction: column; gap: 6px; font: 500 12px/16px var(--font-sans); letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
 .dm-steps > span.is-selected { color: var(--ink); }
 .dm-steps i { display: block; height: 3px; border-radius: 2px; background: var(--line); }
-.dm-steps i > b { display: block; height: 100%; border-radius: 2px; background: var(--create); }
+.dm-steps i > b { display: block; height: 100%; border-radius: 2px; background: var(--ink); }
+/* Colour only when it means something: .is-create for a launched action, or a status colour (ping quality). */
+.dm-steps i > b.is-create, .dm-progress > i.is-create { background: var(--create); }
 .dm-skeleton { background: var(--fill); border-radius: var(--radius-box); }
 .dm-empty { display: flex; flex-direction: column; align-items: center; gap: var(--space-16); padding: var(--space-24) var(--space-16); text-align: center; }
 .dm-empty__mark { width: 56px; height: 56px; border-radius: 50%; border: var(--stroke-box) solid var(--ink); display: grid; place-items: center; font-size: 22px; box-sizing: border-box; }
